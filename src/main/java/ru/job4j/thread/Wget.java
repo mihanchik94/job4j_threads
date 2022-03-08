@@ -1,7 +1,6 @@
 package ru.job4j.thread;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 
 public class Wget implements Runnable {
@@ -15,7 +14,22 @@ public class Wget implements Runnable {
         this.file = file;
     }
 
+    public static boolean validate(String[] args) {
+        if (args.length < 3) {
+            throw new IllegalArgumentException("Specify the URL, speed and the file");
+        }
+        if (args[0] == null) {
+            throw  new IllegalArgumentException("Incorrect URL");
+        }
+        if (args[1] == null) {
+            throw  new IllegalArgumentException("Incorrect speed");
+        }
+        if (args[2] == null) {
+            throw  new IllegalArgumentException("Incorrect file");
+        }
 
+        return false;
+    }
 
     @Override
     public void run() {
@@ -41,6 +55,7 @@ public class Wget implements Runnable {
         String url = args[0];
         int speed = Integer.parseInt(args[1]);
         String file = args[2];
+        validate(args);
         Thread wget = new Thread(new Wget(url, speed, file));
         wget.start();
     }
