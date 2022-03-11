@@ -20,17 +20,17 @@ public final class ParseFile {
 
 
     public synchronized String content(Predicate<Character> filter) {
-        String output = "";
+        StringBuilder builder = new StringBuilder();
         try (InputStream inputStream = new BufferedInputStream(new FileInputStream(file))) {
             int data;
-            while ((data = inputStream.read()) > 0) {
+            while ((data = inputStream.read()) != 0) {
                 if (filter.test((char) data)) {
-                    output += (char) data;
+                    builder.append(data);
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return output;
+        return builder.toString();
     }
 }
