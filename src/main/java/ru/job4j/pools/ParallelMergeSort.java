@@ -3,6 +3,14 @@ package ru.job4j.pools;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.RecursiveTask;
 
+/**
+ * создаем задачи для сортировки частей
+ * производим деление. оно будет происходить, пока в частях не останется по одному элементу
+ * объединяем полученные результаты
+ */
+
+
+
 public class ParallelMergeSort extends RecursiveTask<int[]> {
     private final int[] array;
     private final int from;
@@ -20,14 +28,12 @@ public class ParallelMergeSort extends RecursiveTask<int[]> {
             return new int[] {array[from]};
         }
         int mid = (from + to) / 2;
-        // создаем задачи для сортировки частей
         ParallelMergeSort leftSort = new ParallelMergeSort(array, from, mid);
         ParallelMergeSort rightSort = new ParallelMergeSort(array, from, mid);
-        // производим деление.
-        // оно будет происходить, пока в частях не останется по одному элементу
+
         leftSort.fork();
         rightSort.fork();
-        // объединяем полученные результаты
+
         int[] left = leftSort.join();
         int[] right = rightSort.join();
         return MergeSort.merge(left, right);
