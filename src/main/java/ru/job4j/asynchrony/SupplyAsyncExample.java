@@ -76,10 +76,10 @@ public class SupplyAsyncExample {
     }
 
     public static void main(String[] args) throws Exception {
-        //supplyAsyncExample();
-        //thenAcceptExample();
-        //thenApplyExample();
-        //thenComposeExample();
+        supplyAsyncExample();
+        thenAcceptExample();
+        thenApplyExample();
+        thenComposeExample();
         thenCombineExample();
     }
 }

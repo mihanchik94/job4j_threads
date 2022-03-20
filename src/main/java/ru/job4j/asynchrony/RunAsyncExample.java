@@ -96,9 +96,9 @@ public class RunAsyncExample {
 
 
     public static void main(String[] args) throws Exception {
-        //runAsyncExample();
-        //thenRunExample();
-        //allOfExample();
+        runAsyncExample();
+        thenRunExample();
+        allOfExample();
         anyOfExample();
     }
 }
